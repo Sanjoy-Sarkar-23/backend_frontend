@@ -9,24 +9,16 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-const sleep = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-};
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const formData = new URLSearchParams();
+    const formData = new URLSearchParams();//learning
 
-    formData.append("email", email);
-    formData.append("password", password);
+    formData.append("email", email);//learning
+    formData.append("password", password); //learning
 
-    try {
-      const response = await fetch(
+    try { //learning
+      const response = await fetch( //learning
         "http://localhost:8080/login",
         {
           method: "POST",
@@ -37,30 +29,21 @@ const sleep = (ms) => {
 
           body: formData.toString(),
         }
-      );
+      );//learning
 
-      const data = await response.json();
+      const data = await response.json();//learning
 
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
-      }
-
-      // Save token returned by API
-      // localStorage.setItem("token", data.token);
-
-      // // Optional: save user information
-      // localStorage.setItem(
-      //   "user",
-      //   JSON.stringify(data.user)
-      // );
+      }//learning
 
       // Go to dashboard
       navigate("/dashboard");
 
     } catch (error) {
-      setError(error.message);
+      console.log(error.message);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
